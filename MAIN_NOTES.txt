@@ -1,0 +1,112 @@
+COMMENT INSTALLER GDB ET LE COMPILEUR DE CODE C/C++ :
+- Telecharger MSYS2 par le site officiel, ou le site "filehorse".
+-mettre le système à jour à travers la commande : pacman -Syu
+- ensuite telecharger gcc par la commande :  pacman -S mingw-w64-x86_64-gcc 
+- puis telecharger gdb par la commande: pacman -S mingw-w64-x86_64-gdb 
+- pour verifier l'installation ouvrir l_interface mingw64 et taper la commande : gcc --version/ gdb --version 
+Maintenant pour rendre le compilateur accessible depuis n'importe quel directory de l'ordinateur :
+-sur la barre de recherche, taper : "modifier les variables d'environnement système "
+- puis en bas à droite cliquer sur variable d'environnement 
+- ensuite sur "variables système" selectionner "path"
+-ensuite ajouter le chemin qui mene vers le compilateur gcc, dans mon cas , il s'agit de C:\msys64\mingw64\bin
+- puis cliquer sur ok partout et fermer 
+-ouvrir le cmd et taper gcc -- version, et en temps normal ca devrait marcher 
+
+CREATION DU MODULE PYTHON A PARTIR DE CYTHON 
+
+Command: python setup.py build_ext --inplace
+
+2) COMMENT MODIFIER LA VERSION DE PYTHON QU'UTILISE LE SYSTEME 
+Lorsque j'ai telecharge MSYS2, python3.12 a été installé par defaut comme été la version qu'utilise mon système, pourtant à la base je travaillais avec python311, et tous mes modules etaient telechargés vers le chemin d'acces python311. Donc lorsque j'ouvrais mon terminal, je ne parvenais plus à importer une quelconque librairie telechargee sous python311, car le chemin d'acces du système pointait vers python 312, qui ne contanait aucun module. 
+Pour resoudre ce probleme, je suis allé modifier les variables d'environnement système (accessible facilement via la barre de recherche windows), ensuite j'ai mis le chemin d'acces verts python311 en tete de liste, et mon probleme a été resolu . 
+
+3) COMMENT DESINSTALLER ET REINSTALLER UNE VERSION DE "pip" SELON LE BESOIN ?
+ouvrir le cmd et enter la commande : "python -m pip install --upgrade pip==19.2.3 (ici on entre la version de pip que l"on souhaite utiliser)"
+
+
+4) CREER ET ACTIVER UN VIRTUAL_ENVIRONMENT 
+installer le package " virtualenv"
+ouvrir le terminal et saisir : virtualenv virtualenv_name
+pour activer : virtualenv_name\Scripts\activate.bat
+
+- GitHub password: STEPHANE80%9619
+-GitHub user_name: fjkleie
+
+
+TRAVAILLER AVEC GIT :
+NB: .ext= .extension (the extension of the file)
+
+- Faire un clic droit sur le dossier contenant le project, et selectionner ouvrir git 
+- pour créer un nouveau fichier source : "touch filename.ext"
+- ensuite "git init" pour initialiser le projet et trouver un dossier qui nous permettra d'envoyer nos informations sur GitHub (caché visible par le chemin : "view, options, view, show hiden foders "
+- suite configuration sur git :
+   - git config --global user.name 'enter your user name '
+   - git config --global user.email 'enter your email'
+-to check all the set values just run the command 
+   -git config --global --list 
+
+
+- commande permettant d'ajouter un fichier a la lliste des choses a sauvegarder: "git add filename.ext "
+- ajouter tous les fichiers d'un dossier à la presauvegarde : "git add . "
+- presauvegarder des fichiers avec une extension particulière : " git add *.py *.cpp" ( cad tous les fichiers python et c++)
+- visualiser tous les fichiers ajoutés à la presauvegarde : git status 
+- pour retirer un fichier de la presauvegarde : git rm --cached filename.ext 
+-pour retirer récursivement tous les fichiers présents dans une presauvegarde : git rm -r --cached
+     NB: les deux tirets permettent de juste retirer le fichier des presauvegardes, ne pas les metter signifie supprimer le fichier de la machine 
+- pour annuler les modifications les plus recentes : " git checkout -- ."
+- git commit : un interface vim apparaitra , taper 'i' pour insert (inserer un commentaire pour la tracabilite du code )
+puis appuyer 'echap' et ':wq' cad write end quit 
+ensuite pour verifier que le fichier a été bien sauvegardé, checker git status qui ne devrait plus contenir le fichier sauvegardé
+NB: Lorsque le fichier source a été modifié via l'editeur pendant le developpement, il faut sauvegarder les modifications . Pour cela 
+refaire un git add , puis git commit -m 'un petit commentaire sur les modifs apportees ' (-m 'comment' c'est pour bypasser l'interface vim )
+
+- To push into github repository 
+ - git push -u "URL" master 
+
+
+QUITTER LA BRANCHE MASTER POUR UNE BRANCHE PARALLELE ET LIER LES TRAVAUX DEVELLOPES  SUR DES BRANCHES DIIFFERENTES 
+- créer une nouvelle branche : git branch name_of_the_branch 
+- pour basculer vers la breache cree: git checkout branch_name
+- pour lister le nombre de branches crees : git branch --list 
+- pour switcher d'une branche à l'autre : git checkout name_of_the_branch 
+NB: les fichiers crees et modifs apportes dans une branche sont propres à cette derniere, donc quand on quitte une branche pour une auttre lces fichiers ne sont plus disponibles 
+
+- Pour fusionner les branches et avoir les fichiers des ces dernieres dans la branche master, taper : git merge name_of_the_parallele_branch
+
+- mettre tous les changements ajoutes à un fichier sur github: git push 
+- lors d'un travail collaboratif lorsque le code est modifié par une tierce personne, pour recuperer les modifications : git pull
+
+
+ARCHITECTURE :
+
+Il est important de construire des bâtiments modulaires, que l_on pourra adapter en fonction de l'utilisation, ce qui limitera les couts ultérieurs énergétiques, relatifs à la renovation/ rehabilitation 
+
+TDD 
+INSTALL GOOGLE TEST 
+
+NB : Maybe we can use git bash to clone googletest source code from github into a local repo; but the rest, use "MSYS app"
+#Dowload the source file on the git repository 
+
+#Make to have cmake, make, and gcc installed and updated (if not updated use the MSYS app to install/updated using the command "pacman -S cmake/make/gcc )
+
+# create a variable (GMOCK_HOME for example) and add it to the environment variables and link it to the googletest directory 
+
+# In the googletest directory, create a build folder, in the folder , in MSYS, enter the command :
+cmake -G "MinGW Makefiles" -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc C:/Users/younda/Documents/librairies/googletest
+
+Explaining:
+
+-DCMAKE_C_COMPILER: is an optional variable to specify wich compiler we can to use to compile our code 
+
+-C:/Users/younda/Documents/librairies/googletest: is the directory containing the source code; it is mandatory since we are in another folder (C:/Users/younda/Documents/librairies/googletest/build) thus we should specify the source file directory .
+
+"MinGW Makefiles": is the makefile generator; there are many others but for our case we use this one.
+
+
+
+
+
+
+
+
+

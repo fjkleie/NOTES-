@@ -1,0 +1,30 @@
+CONSTRUCTORS : 
+- automatically called when a function is created, whose rule is to initialyze object's data members. there exist 4 types of constructors (copy, default, move, parameterized )
+
+-A name is called global if it is defined outside any function, class (Chapter 10), or namespace
+ (§8.2
+
+-Function argument names are considered declared in the outermost block of a function, so
+ void f5(int x):
+ {
+ 	 int  x; / /error
+ }
+ is an error becausex x is defined twice in the same scope. Having this be an error allows a not
+ uncommon, subtle mistake to be caught.
+
+- If an initializer is specified for an object, that initializer determines the initial value of an object. If
+ no initializer is specified, a global (§4.9.4), namespace (§8.2), or local static object (§7.1.2, §10.2.4)
+ (collectively calledstatic objects) is initialized to0 0of the appropriate type. For example:
+ int a; / /means ``int a = 0;''
+ double d; / /means ``double d = 0.0;''
+ Local variables (sometimes called automatic objects) and objects created on the free store (some
+times called dynamic objects or heap objects) are not initialized by default. For example:
+ void f()
+ {
+ 	int x; / /x does not have a well-defined value
+ 	/ /...
+ }
+
+REFERENCE : 
+Is giving a another name to an already declared variable 
+- 

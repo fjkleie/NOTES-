@@ -1,0 +1,42 @@
+BRANCH PREDICTION :
+where the processor executes either the "if/else" statement before the if condition has been evaluated 
+
+POINTERS/ REFERENCES 
+wherever it is necessary we should pass value by reference when it comes to use functions . in this case a good rule of thumb is to prefer reference over pointers. However if the params refers to some memory on the heap and function is meant to release it, then we should use pointers 
+
+MEMORY 
+-STACK: variables declared on the stack are somtimes called "local variables " because the only exist within  a certain scope. 
+Variables on the stack can hold any predefined type, including pointers, so we can also declare
+pointers on the stack, for example : int a ;int* b ;
+
+-HEAP: The keyword new is provided by C++ to handle the
+creation of variables on the heap for us. In order to use new you must specify the type of variable to
+create so that the compiler knows how much memory to allocate on the heap. Using new also returns
+the memory address where the newly allocated memory is located, so you must assign the result of
+new to a pointer type.
+After calling new the memory is initialised to zero
+
+MEMORE RELEASE :
+The memory containing stack variables is automatically released when the program execution
+leaves their scope. Variables allocated on the heap however are not automatically released like stack
+variables. it is very important that the programmer releases heap memory when finished with it or
+else the memory cannot be reused and a “memory leak” will be created. C++ provides the keyword
+delete for this task which expects a pointer to a memory address on the heap (see line 20).
+When delete it called on a pointer variable it is good programming practise to set the pointer to
+NULL which we do on line 21. If you subsequently try to access a pointer that has been freed with
+delete you will probably cause your program to crash.
+
+Having reached the end of the function, the stack variables int a and int* b will be automatically
+released. If you had not released the heap memory previously pointed to by b it would have be lost
+for the duration of the program execution always remember to free memory allocated with new once
+you are finished with it, by calling delete on the pointer which points to it!
+
+EXCEPTION HANDLING 
+Finally a word on memory-leaks. When you declare any memory on the heap, bear in mind that
+throwing an exception before that memory is released may result in a memory-leak.
+
+OPERATOR OVERLOADING 
+There are a few new features being used in lines 10-13, so let’s step through them one by one.
+First note that these are actually (global) functions rather than class methods. They do not belong
+specifically to the Matrix class but can access its private/protected data members because they are
+declared friend functions.
