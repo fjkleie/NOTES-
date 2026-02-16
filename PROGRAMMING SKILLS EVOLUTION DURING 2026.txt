@@ -1,0 +1,10 @@
+GOALS BY MARCH 2026
+
+
+- Implement how to use TDD in game development with C++; SFML
+- How can FRP (Functional Reactive Programming) can help in enhancing writing good game engine in particular an programming skills in general.
+
+SCHEDULE: 
+-From 15-02 to 22-02, read the book about FRP and try out to directly implement the learned concepts to the game implementations present in the book about SFML.
+
+

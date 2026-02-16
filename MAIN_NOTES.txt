@@ -84,24 +84,32 @@ Il est important de construire des bâtiments modulaires, que l_on pourra adapte
 TDD 
 INSTALL GOOGLE TEST 
 
-NB : Maybe we can use git bash to clone googletest source code from github into a local repo; but the rest, use "MSYS app"
+
 #Dowload the source file on the git repository 
 
-#Make to have cmake, make, and gcc installed and updated (if not updated use the MSYS app to install/updated using the command "pacman -S cmake/make/gcc )
+#Make to have cmake, mingw32-make("make" version for windows platforms, and gcc installed and updated (if not updated use the MSYS app to install/updated using the command "pacman -S cmake/make/gcc )
 
 # create a variable (GMOCK_HOME for example) and add it to the environment variables and link it to the googletest directory 
 
 # In the googletest directory, create a build folder, in the folder , in MSYS, enter the command :
 cmake -G "MinGW Makefiles" -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc C:/Users/younda/Documents/librairies/googletest
 
+ALTERNATIVE : cmake -G "MinGW Makefiles" ..
+
 Explaining:
 
--DCMAKE_C_COMPILER: is an optional variable to specify wich compiler we can to use to compile our code 
+-DCMAKE_C_COMPILER (optional): is an optional variable to specify wich compiler we can to use to compile our code 
 
--C:/Users/younda/Documents/librairies/googletest: is the directory containing the source code; it is mandatory since we are in another folder (C:/Users/younda/Documents/librairies/googletest/build) thus we should specify the source file directory .
+-C:/Users/younda/Documents/librairies/googletest (optional; we realize that we can replace this with ".."): is the directory containing the source code; it is mandatory since we are in another folder (C:/Users/younda/Documents/librairies/googletest/build) thus we should specify the source file directory .
 
 "MinGW Makefiles": is the makefile generator; there are many others but for our case we use this one.
 
+# TO install "mingw32-make" launch a google search on the topic. And choose the option proposed by the artificial intelligence 
+
+-Rxcpp Library to use FRP: 
+# first download vcpkg 
+#clone the source code of Rxcpp from its GitHub repository 
+#install the package using vcpkg 
 
 
 
